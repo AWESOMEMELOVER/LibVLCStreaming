@@ -20,7 +20,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements IVLCVout.Callback {
     private static final String TAG = "JavaActivity";
-    private static final String SAMPLE_URL = "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov";
+   private static final String SAMPLE_URL = "rtsp://zmserver:4hhWHFZDY1@10.10.10.65:10554/profile1";
+    private static final Uri uri = Uri.parse("rtsp://admin:3edcvfr4@91.226.253.6:30554/cam/realmonitor?channel=1&subtype=0");
     //    private static final String SAMPLE_URL1 = "http://192.168.1.203:80/acer.mov";
     private static final int SURFACE_BEST_FIT = 0;
     private static final int SURFACE_FIT_HORIZONTAL = 1;
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements IVLCVout.Callback
         setContentView(R.layout.activity_main);
 
         final ArrayList<String> args = new ArrayList<>();
-        args.add("-vvv");
+        args.add("--rtsp-tcp");
         mLibVLC = new LibVLC(this, args);
         mMediaPlayer = new MediaPlayer(mLibVLC);
 //        mMediaPlayer2 = new MediaPlayer(mLibVLC);
@@ -85,7 +86,8 @@ public class MainActivity extends AppCompatActivity implements IVLCVout.Callback
         mMediaPlayer.getVLCVout().addCallback(this);
 //        mMediaPlayer2.getVLCVout().addCallback(this);
 
-        Media media = new Media(mLibVLC, Uri.parse(SAMPLE_URL));
+        Media media = new Media(mLibVLC,Uri.parse(SAMPLE_URL));
+
 //        Media media1 = new Media(mLibVLC, Uri.parse(SAMPLE_URL1));
         mMediaPlayer.setMedia(media);
 //        mMediaPlayer2.setMedia(media1);
